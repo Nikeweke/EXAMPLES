@@ -1,0 +1,1 @@
+docker run --rm -it -v %cd%\:/var/www/tensorflow-test sh

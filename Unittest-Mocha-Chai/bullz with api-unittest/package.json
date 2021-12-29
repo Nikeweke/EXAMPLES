@@ -1,0 +1,35 @@
+{
+  "name": "Bullz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node app",
+    "test": "mocha --exit --timeout 10000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nikeweke/Bullz.git"
+  },
+  "keywords": [
+    "Bullz"
+  ],
+  "author": "Nikeweke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nikeweke/Bullz.git"
+  },
+  "homepage": "https://github.com/Nikeweke/Bullz.git",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "colors": "^1.1.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "node-ttl": "0.0.6"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "mocha": "^5.2.0"
+  }
+}

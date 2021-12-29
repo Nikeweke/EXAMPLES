@@ -1,0 +1,47 @@
+{% extends 'layout.njk' %}
+
+{# =======================================-> TITLE #}
+{% set title = "Grezzzly Talk" %}
+
+
+{# =======================================-> CONTENT #}
+{% block content %}
+   
+       <br>
+      <div class="container" onkeydown="if ( event.which == 13 ){ SendMessage(); }">
+           
+           <img src="/images/ads.jpg">
+            
+             <div class="col-sm-4 well">
+                 <label>Online</label>
+                 <ul class="list-group" id="users">
+                      
+                 </ul><br>
+                 
+                 <label>Type message</label>
+                <div class="form-group">
+                    <textarea class="form-control" id="areaMsg" rows="3"></textarea>
+                  </div>
+             </div>
+             
+              <div class="col-sm-6 well">
+               <label>Messages</label>
+                <div class="form-group">
+                    <div id="messages" class="form-control">
+                    </div>
+                  </div>
+             </div>
+
+
+
+<!--             <ul>-->
+                    {# for item in data %}
+                        <li>{{ item.name }}</li>
+                    {% else %}
+                        <li>This would display if the 'item' collection were empty</li>
+                    {# endfor #}
+<!--            </ul>-->
+</div>
+
+     
+{% endblock %}

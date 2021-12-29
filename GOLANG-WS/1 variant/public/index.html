@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>TEST WS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  </head>
+  <body>
+
+
+<div class="container">
+    <h3>WebSocket — You are now chatting as Human </h3>
+
+   <div class="col-md-3">
+      <div id="newMessage" class="well">
+        <input type="text" id="message" autocomplete="off" autofocus>
+         <input id="user_name" type="text" name="user" value="Nikeweke">
+        <input type="submit" value="send" id="send">
+      </div>
+   </div>
+
+   <div class="col-md-9">
+
+      <ul class="list-group" id="thread">
+          <li class="list-group-item disabled">Amount of Notifications <strong><span id="amount_notifi">0</span></strong></li>
+      </ul>
+   </div>
+</div>
+
+
+<script type="text/javascript">
+
+/*
+|<-================
+|    CONNECTION SECTION
+|==============================================================================================->
+*/
+        /*
+        |--------------------------------------------------------------------------
+        |  Создание объекта подключения сокета
+        |
+        |--------------------------------------------------------------------------
+        */
+        var socket = new WebSocket('ws://localhost:8000/ws?user=12')                    // on local
+        // var socket = new WebSocket('ws://' + window.location.host + '/ws?user=12');  // on server
+
+
+/*
+|<-================
+|    ON SECTION
+|==============================================================================================->
+*/
+        /*
+        |--------------------------------------------------------------------------
+        |  Проверка установки подключения (onopen)
+        |
+        |--------------------------------------------------------------------------
+        */
+        socket.onopen = function() {
+          console.log('Connection open!');
+        }
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        |  Проверка закрытия подключения (onclose)
+        |
+        |  socket.close();  -- так можно закрыть соеденение
+        |--------------------------------------------------------------------------
+        */
+        socket.onclose = function() {
+          console.log('Connection was closed!');
+        }
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        |  Проверка на ошибки (onerror)
+        |
+        |--------------------------------------------------------------------------
+        */
+        socket.onerror = function(error) {
+          console.log('Error detected: ' + error);
+        }
+
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        |  Получение сообщения (onmessage) ( ON-action )
+        |
+        |--------------------------------------------------------------------------
+        */
+        socket.onmessage = function(event) {
+
+          console.log(event.data);
+          var data = JSON.parse(event.data);
+
+           if(data.message != '') {
+               $('#thread').append('<li class="list-group-item"><b>'+ data.username +'</b>:'+ data.message +'</li>');
+
+               var amount =  parseInt( $('#amount_notifi').html() ) + 1;
+               $('#amount_notifi').html(amount);
+           }
+        }
+
+
+/*
+|<-================
+|    EMIT SECTION
+|==============================================================================================->
+*/
+
+        /*
+        |--------------------------------------------------------------------------
+        |  Отправка сообщения с помощью формы ( EMIT-action )
+        |
+        |--------------------------------------------------------------------------
+        */
+        $('#send').click(function(e) {
+
+          var postData = {
+                  message:  $('#message').val(),
+                  username: $('#user_name').val(),
+                  email:    "Gagi"
+           }
+
+          $('#message').val('')
+          socket.send(JSON.stringify(postData))
+          // socket.send( $('#message').val() )
+        });
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        |  Отправка сообщения по нажатию ЕНТЕР ( EMIT-action )
+        |
+        |--------------------------------------------------------------------------
+        */
+        $('#message').keypress(function(e) {
+          if(e.charCode == 13 || e.keyCode == 13) {
+            $('#send').click()
+            e.preventDefault()
+          }
+        })
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+  </body>
+</html>

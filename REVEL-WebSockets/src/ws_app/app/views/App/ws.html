@@ -1,0 +1,78 @@
+{{template "header.html" .}}
+
+
+
+<div class="container">
+    <h3>WebSocket — You are now chatting as {{.user}}
+    <a href="/">Leave the chat room</a></h3>
+
+   <div class="col-md-3">
+      <div id="newMessage" class="well">
+        <input type="text" id="message" autocomplete="off" autofocus>
+         <input id="user_name" type="text" name="user" value="Nikeweke">
+        <input type="submit" value="send" id="send">
+      </div>
+   </div>
+
+   <div class="col-md-9">
+      <ul class="list-group" id="thread">
+         <li class="list-group-item"></li>
+      </ul>
+   </div>
+</div>
+
+
+<script type="text/javascript">
+
+  // Create a socket
+  var socket = new WebSocket('ws://'+window.location.host+'/ws?user={{.user}}')
+
+  // Message received on the socket
+  socket.onmessage = function(event) {
+
+    var event = JSON.parse(event.data);
+
+     if(event.Text != '') {
+         ws_text =  JSON.parse(event.Text)
+
+         user    = ws_text.user;
+         user_id = ws_text.user_id;
+         message = ws_text.message;
+
+         $('#thread').append('<li class="list-group-item"><b>'+ user +'</b>:'+ message +'</li>');
+     }
+  }
+
+  // Send form
+  $('#send').click(function(e) {
+
+    var postData = {
+            message:  $('#message').val(),
+            // user_id: 21,
+            user:   $('#user_name').val(),
+     }
+
+    $('#message').val('')
+    socket.send(JSON.stringify(postData))
+    // socket.send( $('#message').val() )
+  });
+
+  // On enter send message
+  $('#message').keypress(function(e) {
+    if(e.charCode == 13 || e.keyCode == 13) {
+      $('#send').click()
+      e.preventDefault()
+    }
+  })
+
+  // Display a message
+  // var display = function(event) {
+
+    //  console.log(event.Text)
+    //  $('#thread').append('<li class="list-group-item"><b>'+ {{.user}} +'</b>:'+ event.Text +'</li>');
+  // }
+
+
+</script>
+
+{{template "footer.html" .}}

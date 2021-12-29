@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<head>     
+            <title>{{ title }}</title>
+          
+            {# CSS
+             ====================================-> #}
+            {% include "elem/styles.njk" %}
+</head>
+
+
+<html>
+    
+    <body>
+      
+        {#-------------------- Navbar #}
+        {% include "elem/navbar.njk"%}
+        
+        {#-------------------- Content #}
+        {% block content %}{% endblock %}
+        
+        
+        {# JS
+         ====================================-> #}
+         {% include "elem/js.njk" %}
+        
+    </body>
+    
+</html>

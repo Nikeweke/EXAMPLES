@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+        <title>Sockets</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- bootstrap - CSS -->
+        <link rel="stylesheet" href="css/booter4.css" >
+
+        <style>
+        .hideme{display: none;}
+        </style>
+
+<body >
+
+<%# ----  NAVBAR  ----  %>
+<% include elem/nav.ejs %>
+
+<br>
+<div class="container">
+  <h2 class="pb-1">Sockets.io and Node.js</h2>
+
+         <!-- INput nickname -->
+         <div class="card p-2">
+                <form id="user-form">
+                    <div class="form-group">
+                        <label>Enter nickname</label>
+                        <input type="text" class="form-control" id="nickname" >
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="OK">
+            </form>
+        </div>
+
+        <!-- Users -->
+       <div class="card p-2 ">
+              <h4>Users</h4>
+              <hr>
+             <div id="users"></div>
+      </div>
+
+
+      <!-- Messages -->
+       <div class="card p-2 ">
+             <h4>Msg</h4>
+             <hr>
+             <div  id="chat" class="bg-inverse text-info"></div>
+        </div>
+
+        <!-- All Messages -->
+         <div class="card p-2 ">
+               <h4>All Msges</h4>
+               <hr>
+               <div  id="msges" class="bg-inverse text-info"></div>
+          </div>
+
+       <!-- Enter messages -->
+      <div class="card p-2 ">
+              <form id="send-message">
+                  <div class="form-group">
+                      <label>Your Message</label>
+                      <input type="text" class="form-control" id="message" >
+                  </div>
+                  <input type="submit" class="btn btn-primary" value="OK">
+          </form>
+      </div>
+
+</div>
+
+
+<!-- JAVASCRIPT
+=========================================-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!-- JQUERY -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>  <!-- Tether  -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script> <!-- bootstrap - JS -->
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/ma-js.js"></script>
+<!-- =========================================-->
+
+</body>
+</html>
