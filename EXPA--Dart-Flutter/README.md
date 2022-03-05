@@ -1,93 +1,67 @@
-# EXPA - Dart & Flutter
+# Flutter
 
-* [Awesome Dart](https://github.com/yissachar/awesome-dart)
-* [Dart tutorial](https://metanit.com/dart/tutorial/2.2.php)
-* [Language Tour](https://dart.dev/guides/language/language-tour)
-* [Dart tutotorial](https://metanit.com/dart/tutorial/1.1.php)
+* Install
+* Quick launch
+* Basics about Flutter app
+* Internet permission for AndroidManifest.xml
+* Links
+
+### Install 
+
+1. Get [flutter .zip](https://docs.flutter.dev/get-started/install/windows) and 
+    - For mobile development you need [Android Studio](https://developer.android.com/studio)
+    - For windows application you need [Visual Studio](https://visualstudio.microsoft.com/downloads/) включая в себя "Desktop development with C++" workload
+
+2. Set env variable in windows to folder `flutter/bin/` it will expose `flutter` & `dart`
 
 
-### Flutter tutorials 
+
+### Quick launch 
+
+```sh
+# init project
+flutter create test_app
+
+# cd to "test_app" and run project 
+flutter run 
+
+# choose where launch as: 
+#  * Windows
+#  * Chrome
+#  * Android
+```
+
+
+
+### Basics about Flutter app
+
+Flutter app it is a widget that contains another widgets.
+
+* **Stateless widget** are immutable, meaning that their properties can’t change—all values are final.
+* **Stateful widget** maintain state that might change during the lifetime of the widget.  Implementing a stateful widget requires at least two classes: 1) a StatefulWidget class that creates an instance of 2) a State class. The StatefulWidget class is, itself, immutable and can be thrown away and regenerated, but the State class persists over the lifetime of the widget.
+
+### Debug on real device
+1. Install from Android Studio in SDK plugins - "Google usb driver"
+2. Enable on the phone developer section and allow debuging
+```sh
+# will start - debug version of app
+flutter run 
+
+# will start - release version of app
+flutter run --release
+```
+
+### Internet permission for AndroidManifest.xml
+* Debug version manifest path - `android\app\src\debug\AndroidManifest.xml`
+* Release version manifest path - `android\app\src\main\AndroidManifest.xml`
+
+
+
+### Links
 * [Flutter docs](https://flutter.dev/docs)
 * [Cupertino Store](https://codelabs.developers.google.com/codelabs/flutter-cupertino#0)
 * [TodoApp tutorial](https://www.youtube.com/watch?v=mOiXndQAZpw&list=WL&index=1&t=1020s&pbjreload=101)
 * [Radio tiles](https://github.com/askNilesh/radio_button)
 * [Page transitions](https://medium.com/flutter-community/everything-you-need-to-know-about-flutter-page-route-transition-9ef5c1b32823)
 * [Cupertino tab bar](https://medium.com/flutter-community/add-a-tab-bar-and-navigation-bar-with-ios-style-in-your-next-flutter-app-bf97b1e27e3a)
-
-#### Содержание (Dart)
-* Установка
-* Quick start 
-* Использование библиотек
-* Вопросы и Ответы
-
---- 
-
-### Установка
-1. Скачать можно с офиц. сайта dart:
-  * .zip - [ссылка](https://dart.dev/tools/sdk/archive)
-  * через choco  [ссылка](https://dart.dev/get-dart)
-2. Установить в `Path` путь к папке `/some/path/dart/bin` 
-3. 
-```sh
-dart --version 
-```
-
-
-### Quick start
-###### main.dart
-```dart
-void main() {
-  print('Hello there');
-}
-```
-
-```bash
-dart run main.dart
-dart compile exe main.dart # compile to exe
-dart compile js main.dart # compile to js
-```
-
-###### packages.bat
-```batch
-@ECHO OFF
-SETLOCAL
-chcp 866>nul
-
-SET PUB_CACHE=%CD%\cache
-
-rem get packages that specified in pubspec.yaml
-dart pub get 
-
-rem add some package
-dart pub add ssh
-```
-
-###### run.bat
-```batch
-@ECHO OFF
-SETLOCAL
-chcp 866>nul
-
-SET PUB_CACHE=%CD%\cache
-
-dart run
-```
-
-###  Использование библиотек
-Для того чтобы установить пакеты извне, нужно обозначить текущий рабочий проект в путях:
-* **PUB_CACHE** - это там где установлен язык. После установки, этот путь сам добавиться в `PATH`
-    
-### Вопросы и Ответы
-
-**1)** Как поменять место установки пакетов? 
-> Поставить переменную **PUB_CACHE** через `.bat` файл 
-```batch
-rem packages.bat
-
-SET PUB_CACHE=%CD%\cache
-rem get packages that specified in pubspec.yaml
-dart pub get 
-```
-
-
 

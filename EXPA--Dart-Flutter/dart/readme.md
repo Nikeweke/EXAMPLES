@@ -3,8 +3,8 @@
 * Install
 * Quick launch
 * Init project
+* Links
 
---- 
 
 ### Install 
 * Get from [Dart official website](https://dart.dev/get-dart) zip file 
@@ -44,6 +44,13 @@ dart create --template server-shelf ./http-server
 # start 
 dart run ./http-server/bin/server
 ```
+
+### Links
+
+* [Awesome Dart](https://github.com/yissachar/awesome-dart)
+* [Dart tutorial](https://metanit.com/dart/tutorial/2.2.php)
+* [Language Tour](https://dart.dev/guides/language/language-tour)
+* [Dart tutotorial](https://metanit.com/dart/tutorial/1.1.php)
 
 
 
