@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<!-- Or if you want a more recent canary version -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script> -->
+<video id="video" controls></video>
+<script>
+
+  // setInterval(refreshStream, 10000)
+  refreshStream()
+
+  function refreshStream() {
+    var video = document.getElementById('video');
+    if(Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource('http://localhost:8000/media/1/stream/');
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED,function() {
+        video.play();
+    });
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = 'http://localhost:8000/media/1/stream/';
+      video.addEventListener('loadedmetadata',function() {
+        video.play();
+      });
+    }
+  }
+  
+</script>
+  
+</body>
+</html>
